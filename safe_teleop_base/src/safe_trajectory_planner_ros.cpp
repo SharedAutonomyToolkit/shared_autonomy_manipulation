@@ -31,7 +31,8 @@ namespace safe_teleop {
     string world_model_type;
 
     //initialize the copy of the costmap the controller will use
-    costmap_ros_->getCostmapCopy(costmap_);
+    //costmap_ros_->getCostmapCopy(costmap_);
+    costmap_ = *costmap_ros_->getCostmap();
 
     ros::NodeHandle private_nh("~");
 
@@ -50,9 +51,8 @@ namespace safe_teleop {
     cmd_pub_.publish(vel);
 
     //we'll get the parameters for the robot radius from the costmap we're associated with
-    inscribed_radius_ = costmap_ros_->getInscribedRadius();
-    circumscribed_radius_ = costmap_ros_->getCircumscribedRadius();
-    inflation_radius_ = costmap_ros_->getInflationRadius();
+    inscribed_radius_ = costmap_ros_->getLayeredCostmap()->getInscribedRadius();
+    circumscribed_radius_ = costmap_ros_->getLayeredCostmap()->getCircumscribedRadius();
 
     private_nh.param("acc_lim_x", acc_lim_x, 2.5);
     private_nh.param("acc_lim_y", acc_lim_y, 2.5);
@@ -192,7 +192,7 @@ namespace safe_teleop {
 //    costmap_ros_->clearRobotFootprint();
 
     //make sure to update the costmap we'll use for this cycle
-    costmap_ros_->getCostmapCopy(costmap_);
+    costmap_ = *costmap_ros_->getCostmap();
 
     // Set current velocities from odometry
     geometry_msgs::Twist global_vel;
@@ -208,12 +208,12 @@ namespace safe_teleop {
 
     tf::Stamped<tf::Pose> robot_vel;
 
-    robot_vel.setData(btTransform(tf::createQuaternionFromYaw(global_vel.angular.z), btVector3(global_vel.linear.x, global_vel.linear.y, 0)));
+    robot_vel.setData(tf::Transform(tf::createQuaternionFromYaw(global_vel.angular.z), tf::Vector3(global_vel.linear.x, global_vel.linear.y, 0)));
     robot_vel.frame_id_ = robot_base_frame_;
     robot_vel.stamp_ = ros::Time();
 
     tf::Stamped<tf::Pose> user_vel;
-    user_vel.setData(btTransform(tf::createQuaternionFromYaw(vel->angular.z), btVector3(vel->linear.x, vel->linear.y, 0)));
+    user_vel.setData(tf::Transform(tf::createQuaternionFromYaw(vel->angular.z), tf::Vector3(vel->linear.x, vel->linear.y, 0)));
     user_vel.frame_id_ = robot_base_frame_;
     user_vel.stamp_ = ros::Time();
 
@@ -283,7 +283,7 @@ namespace safe_teleop {
 
     //create a path message
     nav_msgs::Path gui_path;
-    gui_path.set_poses_size(path.size());
+    gui_path.poses.resize(path.size());
     gui_path.header.frame_id = global_frame_;
     gui_path.header.stamp = path[0].header.stamp;
 

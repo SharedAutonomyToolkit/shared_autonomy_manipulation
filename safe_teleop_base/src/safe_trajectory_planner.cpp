@@ -250,7 +250,7 @@ Trajectory SafeTrajectoryPlanner::createTrajectories(double x, double y, double 
   Trajectory* swap = NULL;
 
   //any cell with a cost greater than the size of the map is impossible
-  double impossible_cost = map_.map_.size();
+  double impossible_cost = map_.obstacleCosts();
 
   // first sample the user suggested trajectory
   generateTrajectory(x, y, theta, vx, vy, vtheta, dx, dy, dtheta, acc_x, acc_y, acc_theta, impossible_cost, dx, dy, dtheta, *comp_traj);
@@ -397,9 +397,9 @@ Trajectory SafeTrajectoryPlanner::findBestPath(tf::Stamped<tf::Pose> global_pose
     ROS_INFO("No safe trajectory found");
   }
   else {
-    btVector3 start(best.xv_, best.yv_, 0);
+    tf::Vector3 start(best.xv_, best.yv_, 0);
     drive_velocities.setOrigin(start);
-    btMatrix3x3 matrix;
+    tf::Matrix3x3 matrix;
     matrix.setRotation(tf::createQuaternionFromYaw(best.thetav_));
     drive_velocities.setBasis(matrix);
   }
@@ -438,7 +438,7 @@ Trajectory SafeTrajectoryPlanner::findPath(tf::Stamped<tf::Pose> global_pose, tf
   }
 
   Trajectory traj;
-  double impossible_cost = map_.map_.size();
+  double impossible_cost = map_.obstacleCosts();
   generateTrajectory(x, y, theta, vx, vy, vtheta, dx, dy, dtheta,
       acc_lim_x_, acc_lim_y_, acc_lim_theta_, impossible_cost, dx, dy, dtheta, traj);
 
