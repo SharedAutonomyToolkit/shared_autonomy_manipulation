@@ -7,16 +7,20 @@ find_package(PCL REQUIRED)
 
 catkin_package(
   CATKIN_DEPENDS roscpp base_local_planner costmap_2d
-  DEPENDS pcl)
+  DEPENDS pcl
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME})
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${PCL_INCLUDE_DIRS})
 add_executable(safe_teleop_base src/safe_trajectory_planner_ros.cpp src/safe_trajectory_planner.cpp)
 target_link_libraries(safe_teleop_base ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+install(DIRECTORY include
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp"
+)
 
-install(TARGETS safe_teleop_base
+install(TARGETS safe_teleop_base ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
