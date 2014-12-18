@@ -109,7 +109,7 @@ namespace safe_teleop {
       nav_msgs::Odometry base_odom_; ///< @brief Used to get the velocity of the robot
       std::string robot_base_frame_; ///< @brief Used as the base frame id of the robot
       double rot_stopped_velocity_, trans_stopped_velocity_;
-      double inscribed_radius_, circumscribed_radius_, inflation_radius_;
+      double inscribed_radius_, circumscribed_radius_;
       ros::Publisher l_plan_pub_;
       ros::Publisher u_plan_pub_;
       ros::Subscriber odom_sub_, user_sub_;
