@@ -8,9 +8,6 @@
   <license>BSD</license>
   <url>http://ros.org/wiki/safe_teleop_stage</url>
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>safe_teleop_base</build_depend>
-  <build_depend>stage</build_depend>
-  <build_depend>joy</build_depend>
   <run_depend>safe_teleop_base</run_depend>
   <run_depend>stage</run_depend>
   <run_depend>joy</run_depend>
