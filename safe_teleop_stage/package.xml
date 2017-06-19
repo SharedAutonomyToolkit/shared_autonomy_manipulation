@@ -5,6 +5,7 @@
      Demo of safe_teleop in stage
   </description>
   <maintainer email="foo@foo.com">Charles DuHadway (maintained by Benjamin Pitzer)</maintainer>
+  <maintainer email="ros-orphaned-packages@googlegroups.com">ROS Orphaned Package Maintainers</maintainer>
   <license>BSD</license>
   <url>http://ros.org/wiki/safe_teleop_stage</url>
   <buildtool_depend>catkin</buildtool_depend>
