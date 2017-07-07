@@ -4,7 +4,7 @@ project(safe_teleop_pr2)
 find_package(catkin REQUIRED COMPONENTS)
 catkin_package(CATKIN_DEPENDS safe_teleop_base pr2_teleop joy)
 
-install(DIRECTORY scripts launch config
+install(DIRECTORY launch config
   DESTINATION
   ${CATKIN_PACKAGE_SHARE_DESTINATION}
   USE_SOURCE_PERMISSIONS
