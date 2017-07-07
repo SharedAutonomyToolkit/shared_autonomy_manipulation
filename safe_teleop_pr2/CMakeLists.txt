@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(safe_teleop_pr2)
 
 find_package(catkin REQUIRED COMPONENTS)
-catkin_package(CATKIN_DEPENDS safe_teleop_base pr2_teleop joy)
+catkin_package()
 
 install(DIRECTORY scripts launch config
   DESTINATION
