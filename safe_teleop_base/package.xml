@@ -1,6 +1,6 @@
 <package>
   <name>safe_teleop_base</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>
      This package provides automatic collision avoidance and is intended to be used for safer teleoperation of a robot base.
   </description>

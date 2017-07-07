@@ -2,8 +2,8 @@
 Changelog for package safe_teleop_stage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2017-07-07)
+------------------
 * change catkin_package() (`#9 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/9>`_)
 * Contributors: Kei Okada
 

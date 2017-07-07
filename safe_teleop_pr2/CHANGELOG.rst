@@ -2,8 +2,8 @@
 Changelog for package safe_teleop_pr2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2017-07-07)
+------------------
 * CMakeLists.txt : change catkin_package() (`#9 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/9>`_ )
 * CMakeLists.txt : fix install error (`#8 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/8>`_)
 * Contributors: Kei Okada
