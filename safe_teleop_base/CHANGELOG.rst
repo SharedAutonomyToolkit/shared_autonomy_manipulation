@@ -2,8 +2,8 @@
 Changelog for package safe_teleop_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.1 (2017-07-07)
+------------------
 * add 'ROS Orphaned Package Maintainers' as maintainer (`#6 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/pull/6>`_)
 * changed branch and fixed launch file
 * catkinize the packages to work on hydro (`#1 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/pull/1>`_)
