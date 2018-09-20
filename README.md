@@ -1,0 +1,2 @@
+shared_autonomy_manipulation [![Build Status](https://travis-ci.com/SharedAutonomyToolkit/shared_autonomy_manipulation.svg?branch=hydro-devel)](https://travis-ci.org/SharedAutonomyToolkit/shared_autonomy_manipulation)
+=========================================================================================================================================================================================================================
