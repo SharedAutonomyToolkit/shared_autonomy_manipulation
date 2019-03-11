@@ -18,7 +18,7 @@ using namespace base_local_planner;
 
 namespace safe_teleop {
 
-  SafeTrajectoryPlannerROS::SafeTrajectoryPlannerROS(tf::TransformListener* tf, Costmap2DROS* costmap_ros)
+  SafeTrajectoryPlannerROS::SafeTrajectoryPlannerROS(TFListener* tf, Costmap2DROS* costmap_ros)
     : nh_(), world_model_(NULL), tc_(NULL), costmap_ros_(costmap_ros), tf_(tf) {
     rot_stopped_velocity_ = 1e-2;
     trans_stopped_velocity_ = 1e-2;
@@ -185,8 +185,15 @@ namespace safe_teleop {
     std::vector<geometry_msgs::PoseStamped> local_plan;
     std::vector<geometry_msgs::PoseStamped> user_plan;
     tf::Stamped<tf::Pose> global_pose;
+#if ROS_VERSION_MINIMUM(1, 14, 0) // ROS_MELODIC
+    geometry_msgs::PoseStamped global_pose_stamped;
+    if(!costmap_ros_->getRobotPose(global_pose_stamped))
+      return false;
+    tf::poseStampedMsgToTF(global_pose_stamped, global_pose);
+#else
     if(!costmap_ros_->getRobotPose(global_pose))
       return false;
+#endif
 
     //we also want to clear the robot footprint from the costmap we're using
 //    costmap_ros_->clearRobotFootprint();
@@ -298,7 +305,12 @@ namespace safe_teleop {
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "safe_trajectory_node");
-  tf::TransformListener tf(ros::Duration(10));
+#if ROS_VERSION_MINIMUM(1, 14, 0) // ROS_MELODIC
+  safe_teleop::TFListener tf;
+  tf2_ros::TransformListener tf2_listener(tf);
+#else
+  safe_teleop::TFListener tf(ros::Duration(10));
+#endif
   costmap_2d::Costmap2DROS* costmap_ros = new costmap_2d::Costmap2DROS("local_costmap", tf);
   safe_teleop::SafeTrajectoryPlannerROS* planner = new safe_teleop::SafeTrajectoryPlannerROS(&tf, costmap_ros);
 
