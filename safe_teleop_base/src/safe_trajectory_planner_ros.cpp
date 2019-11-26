@@ -78,6 +78,7 @@ namespace safe_teleop {
     private_nh.param("world_model", world_model_type, string("costmap"));
     private_nh.param("holonomic_robot", holonomic_robot, true);
     private_nh.param("dwa", dwa, true);
+    private_nh.param("safe_backwards", safe_backwards_, false);
 
     //parameters for using the freespace controller
     double min_pt_separation, max_obstacle_height, grid_resolution;
@@ -159,7 +160,9 @@ namespace safe_teleop {
   }
 
   void SafeTrajectoryPlannerROS::cmdCallback(const geometry_msgs::Twist::ConstPtr& vel) {
-    if ((vel->linear.x > 0) || (fabs(vel->linear.y) > 0)) {
+    if ((safe_backwards_  && ((fabs(vel->linear.x) > 0) || (fabs(vel->linear.y) > 0))) ||
+        (!safe_backwards_ && ((vel->linear.x > 0) || (fabs(vel->linear.y) > 0))))
+    {
       geometry_msgs::Twist safe_vel;
       if (computeVelocityCommands(vel, safe_vel)) {
         cmd_pub_.publish(safe_vel);

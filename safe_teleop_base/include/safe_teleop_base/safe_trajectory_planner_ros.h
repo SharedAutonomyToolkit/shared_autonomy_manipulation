@@ -126,6 +126,7 @@ typedef tf::TransformListener TFListener;
 
       boost::recursive_mutex odom_lock_;
       double max_vel_th_, min_vel_th_;
+      bool safe_backwards_;
   };
 
 }
