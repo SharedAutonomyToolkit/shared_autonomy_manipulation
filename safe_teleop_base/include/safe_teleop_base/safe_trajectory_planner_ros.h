@@ -24,6 +24,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/Point.h>
+#include <std_srvs/Empty.h>
 
 #include <tf/transform_listener.h>
 
@@ -102,6 +103,8 @@ typedef tf::TransformListener TFListener;
 
       void cmdCallback(const geometry_msgs::Twist::ConstPtr& vel);
 
+      bool clearCostmapsService(std_srvs::Empty::Request &req, std_srvs::Empty::Response &resp);
+
       std::vector<double> loadYVels(ros::NodeHandle node);
 
       ros::NodeHandle nh_;
@@ -123,6 +126,8 @@ typedef tf::TransformListener TFListener;
 
       ros::Publisher cmd_pub_;
       ros::Subscriber cmd_sub_;
+
+      ros::ServiceServer clear_costmaps_srv_;
 
       boost::recursive_mutex odom_lock_;
       double max_vel_th_, min_vel_th_;

@@ -50,6 +50,8 @@ namespace safe_teleop {
     geometry_msgs::Twist vel;
     cmd_pub_.publish(vel);
 
+    clear_costmaps_srv_ = private_nh.advertiseService("clear_costmaps", &SafeTrajectoryPlannerROS::clearCostmapsService, this);
+
     //we'll get the parameters for the robot radius from the costmap we're associated with
     inscribed_radius_ = costmap_ros_->getLayeredCostmap()->getInscribedRadius();
     circumscribed_radius_ = costmap_ros_->getLayeredCostmap()->getCircumscribedRadius();
@@ -303,6 +305,11 @@ namespace safe_teleop {
     }
 
     pub.publish(gui_path);
+  }
+
+  bool SafeTrajectoryPlannerROS::clearCostmapsService(std_srvs::Empty::Request &req, std_srvs::Empty::Response &resp){
+    costmap_ros_->resetLayers();
+    return true;
   }
 };
 
