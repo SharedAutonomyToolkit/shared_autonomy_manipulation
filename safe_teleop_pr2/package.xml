@@ -1,6 +1,6 @@
 <package>
   <name>safe_teleop_pr2</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>
      Launch files for running safe_teleop_base on pr2
   </description>

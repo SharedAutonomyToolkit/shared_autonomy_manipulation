@@ -2,8 +2,8 @@
 Changelog for package safe_teleop_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2019-12-18)
+------------------
 * add clear_costmap service (`#4 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/4>`_)
 * add param to plan safe trajectory on backwards (`#13 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/13>`_)
 * update travis.yml and fix for latest costmap_2d using tf2 (`#11 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/11>`_)

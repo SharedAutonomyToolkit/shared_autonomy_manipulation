@@ -2,8 +2,8 @@
 Changelog for package safe_teleop_stage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2019-12-18)
+------------------
 * add param to plan safe trajectory on backwards (`#13 <https://github.com/SharedAutonomyToolkit/shared_autonomy_manipulation/issues/13>`_)
 * add safe_teleop + move_base example
     see https://github.com/jsk-ros-pkg/jsk_robot/tree/master/jsk_fetch_robot/jsk_fetch_startup for detail
